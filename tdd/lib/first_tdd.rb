@@ -32,6 +32,18 @@ def my_transpose(arr)
   res
 end
 
-
+def stock_picker(arr)
+  highest_exchange = 0
+  highest_pair = []
+  (0...arr.length).each do |i1|
+    (0...arr.length).each do |i2|
+      if i2 > i1 && arr[i2] - arr[i1] > highest_exchange
+        highest_exchange = arr[i2] - arr[i1] 
+        highest_pair = [i1, i2]
+      end
+    end
+  end
+  highest_pair
+end
 
 
