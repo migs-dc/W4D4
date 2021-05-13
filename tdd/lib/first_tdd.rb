@@ -48,15 +48,13 @@ end
 
 
 class TowersOfHanoi 
-  attr_reader :towers
+  attr_accessor :towers
   def initialize
     @towers = [[4, 3, 2, 1], [] , [] ]
-
   end
 
   def won?
     @towers[-1] == [4,3,2,1]
-
   end
 
   def move(input)
@@ -64,10 +62,9 @@ class TowersOfHanoi
     if towers[y].empty? || towers[y][-1] > towers[x][-1]
       disc = towers[x].pop
       towers[y].push(disc)
-    else
-      "Bad input!"
+    # else
+    #   raise "Bad input!" 
     end
-
   end
 
   def play
@@ -83,6 +80,14 @@ class TowersOfHanoi
   end
 
 end
+
+#move
+#whether or not to raise an error
+#certain moves to either raise one or not
+
+#won
+#check for both cases
+#tower 2 win
 
 example = TowersOfHanoi.new
 example.play

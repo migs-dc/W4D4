@@ -13,12 +13,14 @@ describe "#my_uniq" do
 end
 
 describe "#two_sum" do
+# [] => nil
+# [0, 0, 0, 0] => [ [0,1], ]
   it "finds all pairs of positions where the elements at those positions sum to zero" do
     expect(two_sum([-1, 0, 2, -2, 1])).to eq([[0, 4], [2, 3]])
   end
 
   it "array of pairs to be sorted 'dictionary-wise'" do
-    expect(two_sum([-1, 0, 2, -2, 1])).to eq([[0, 4], [2, 3]])
+    expect(two_sum([-1, 0, 2, -2, 1, -2])).to eq([[0, 4], [2, 3], [2, 5]])
   end
 end
 
@@ -49,4 +51,28 @@ describe TowersOfHanoi do
       expect(newgame.towers). to eq([[4, 3, 2, 1], [] , [] ])
     end
   end
+
+  describe "#move" do
+    it "moves the piece from one tower to another if the other tower is empty" do
+      newgame.move([0,1])
+      expect(newgame.towers).to eq([[4, 3, 2], [1] , [] ])
+    end
+
+    it "doesn't transfter a disc into a stack with a smaller disk inside" do
+      newgame.towers = [ [4,2], [1], [3] ]
+      newgame.move([2,0])
+      expect(newgame.towers).to eq([ [4,2], [1], [3] ])
+      # expect(newgame.move([0,1])).to raise_error("Bad input!")
+    end
+  end
+
+  describe "#won?" do
+    it "game is over when the last tower has all the properly placed pieces" do
+      newgame.towers = [ [], [1], [4,3,2] ]
+      newgame.move([1,2])
+      expect(newgame.won?).to be true
+    end
+  end
+  
+
 end
