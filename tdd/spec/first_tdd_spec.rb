@@ -41,8 +41,12 @@ describe "#stock_picker" do
   end
 end
 
-describe "#towers_of_hanoi" do
-  it "keep three arrays, which represent the piles of discs"
-  it "have an array of discs that should each be represented by their size"
-  it "in a "
+describe TowersOfHanoi do
+  subject(:newgame) {TowersOfHanoi.new} 
+
+  describe "#initialize" do
+    it "starts the tower with all pieces on the first stack" do
+      expect(newgame.towers). to eq([[4, 3, 2, 1], [] , [] ])
+    end
+  end
 end

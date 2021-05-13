@@ -47,3 +47,42 @@ def stock_picker(arr)
 end
 
 
+class TowersOfHanoi 
+  attr_reader :towers
+  def initialize
+    @towers = [[4, 3, 2, 1], [] , [] ]
+
+  end
+
+  def won?
+    @towers[-1] == [4,3,2,1]
+
+  end
+
+  def move(input)
+    x, y = input
+    if towers[y].empty? || towers[y][-1] > towers[x][-1]
+      disc = towers[x].pop
+      towers[y].push(disc)
+    else
+      "Bad input!"
+    end
+
+  end
+
+  def play
+    puts "Playing Towers of Hanoi"
+    until won?
+      print towers
+      puts
+      puts "Please enter a move, separated by a comma"
+      input = gets.chomp.split(",").map {|number| number.to_i}
+      move(input)  # "1, 1" becomes [1, 1]
+    end
+    puts "Congrats!"
+  end
+
+end
+
+example = TowersOfHanoi.new
+example.play
